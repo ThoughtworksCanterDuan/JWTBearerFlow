@@ -55,7 +55,7 @@ public class JWTAuthFlow {
         
         if(res.getStatusCode() == 200){
             Map<String, Object> mapTokenResponse = (Map<String, Object>)JSON.deserializeUntyped(res.getBody());
-            String access_token = (String)mapTokenResponse.get('access_token');
+            String access_token = (String)mapTokenResponse.get('token_type') + ' ' + (String)mapTokenResponse.get('access_token');
             system.debug('access_token:' + access_token);
             return access_token;
         }
